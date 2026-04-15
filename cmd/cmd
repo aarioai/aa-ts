@@ -1,0 +1,34 @@
+#!/bin/bash
+set -euo pipefail
+
+# https://github.com/aarioai/opt
+. /opt/aa/lib/aa-posix-lib.sh
+
+CUR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+readonly CUR
+# aarioai/airis
+ROOT_DIR="$(cd "${CUR}/.." && pwd)"
+readonly ROOT_DIR
+
+publish(){
+  git add -A .
+  git commit -m "${1:-"patch"}"
+  git push origin main
+
+  #  add 1 to path,  <major>.<minor>.<patch>
+  npm version patch
+  npm publish
+}
+
+
+main(){
+  Usage $# -ge 1 './cmd [publish|]'
+  local cmd="$1"
+  shift
+
+  case "$cmd" in
+    publish) publish "$@";;
+  esac
+}
+
+main "$@"
