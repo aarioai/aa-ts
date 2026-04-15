@@ -10,6 +10,12 @@ AaTS 一个优雅调用 Restful API 的库，包括路由自动填充、鉴权�
 这里案例使用的后端接口，可以参考 [Airis Simple Demo](https://github.com/aarioai/airis/blob/main/demo/project/simple/README_%E8%AF%B4%E6%98%8E.md)
 启动后端服务。
 
+## 安装方式
+
+```shell
+npm i aa-ts
+```
+
 ## HTTP 请求
 
 > **baseURL 优先级**：URL 里面的 > option.baseURL > aa.http.baseURL > aa.httpDefaults.baseURL
